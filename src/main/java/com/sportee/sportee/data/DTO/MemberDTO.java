@@ -9,11 +9,11 @@ import java.util.Date;
 @Getter
 public class MemberDTO {
 
-private int id;
-private String firstName;
-private String lastName;
-private Date birthDate;
-private String role;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private Date birthDate;
+    private String role;
 
 
     public MemberDTO(SporteeMember member) {
