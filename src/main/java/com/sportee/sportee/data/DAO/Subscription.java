@@ -6,25 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
-public class Measurement {
+public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Id
     private int id;
     private Date date;
-    private int value;
-
+    private boolean valid;
 
     @ManyToOne
-    @JoinColumn(name="measurement_type_id")
-    private MeasurementType measurementType;
+    @JoinColumn(name="subscription_type_id")
+    private SubscriptionType subscriptionType;
 
     @ManyToOne
     @JoinColumn(name="member_id")

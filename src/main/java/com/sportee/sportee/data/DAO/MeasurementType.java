@@ -22,7 +22,7 @@ public class MeasurementType {
     private String name;
     private String unit;
 
-    @OneToMany(mappedBy = "measurement")
+    @OneToMany(mappedBy = "measurementType")
     private List<Measurement> measurements;
 
 

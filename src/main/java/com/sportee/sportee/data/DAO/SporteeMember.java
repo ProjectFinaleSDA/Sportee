@@ -36,4 +36,7 @@ public class SporteeMember {
     @OneToMany(mappedBy = "sporteeMember")
     private List<Measurement> measurements;
 
+    @OneToMany(mappedBy = "sporteeMember")
+    private List<Subscription> subscriptions;
+
 }

@@ -5,29 +5,23 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
-public class Measurement {
+public class SubscriptionType {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @Id
     private int id;
-    private Date date;
-    private int value;
 
+    private String name;
+    private int duration;
+    private int price;
 
-    @ManyToOne
-    @JoinColumn(name="measurement_type_id")
-    private MeasurementType measurementType;
-
-    @ManyToOne
-    @JoinColumn(name="member_id")
-    private SporteeMember sporteeMember;
-
+    @OneToMany(mappedBy = "subscriptionType")
+    private List<Subscription> subscriptions;
 }
