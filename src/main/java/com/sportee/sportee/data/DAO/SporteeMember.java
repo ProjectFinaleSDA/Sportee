@@ -1,0 +1,31 @@
+package com.sportee.sportee.data.DAO;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
+
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@NoArgsConstructor
+public class SporteeMember {
+
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @Id
+    private int id;
+
+    private String firstName;
+    private String lastName;
+    private Date birthDate;
+
+    @OneToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+}
