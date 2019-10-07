@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class GymClass {
 
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Id
