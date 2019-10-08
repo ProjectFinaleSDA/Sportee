@@ -1,5 +1,6 @@
 package com.sportee.sportee.data.DAO;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class SporteeMember {
     private String firstName;
     private String lastName;
     private Date birthDate;
+    private int height;
 
     @OneToOne
     @JoinColumn(name="user_id")
@@ -39,6 +41,11 @@ public class SporteeMember {
     @OneToMany(mappedBy = "sporteeMember")
     private List<Subscription> subscriptions;
 
-
-
+    @Builder
+    public SporteeMember(String firstName, String lastName, Date birthDate, int height) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.height = height;
+    }
 }

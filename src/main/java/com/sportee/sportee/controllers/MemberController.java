@@ -1,12 +1,15 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.services.MemberService;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 @Controller
 public class MemberController {
@@ -22,5 +25,24 @@ public class MemberController {
         ModelAndView mv = new ModelAndView("members");
         mv.addObject("members", memberService.getAllMembers());
         return mv;
+    }
+
+    @GetMapping("/members/insertMember")
+    public String insertMember() {
+        return "insertUser";
+
+    }
+
+    @PostMapping("/members/insertMember")
+    public ModelAndView insertMember(String firstName, String lastName, Date birthDate, int height) {
+        memberService.insertMember(firstName, lastName, birthDate, height);
+        return showAllMembers();
+    }
+
+    @RequestMapping("/members/{id}/delete")
+    public ModelAndView deleteUser(@PathVariable Integer id) {
+        memberService.deleteMember(id);
+        return showAllMembers();
+
     }
 }
