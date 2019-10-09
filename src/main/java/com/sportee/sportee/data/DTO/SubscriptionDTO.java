@@ -1,8 +1,6 @@
 package com.sportee.sportee.data.DTO;
 
-import com.sportee.sportee.data.DAO.SporteeMember;
 import com.sportee.sportee.data.DAO.Subscription;
-import com.sportee.sportee.data.DAO.SubscriptionType;
 import lombok.Getter;
 
 import java.util.Date;
