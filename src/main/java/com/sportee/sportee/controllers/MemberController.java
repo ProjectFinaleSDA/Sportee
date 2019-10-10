@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Controller
 public class MemberController {
@@ -37,7 +37,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/insertMember")
-    public ModelAndView insertMember(String firstName, String lastName, @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public ModelAndView insertMember(String firstName, String lastName, /*@DateTimeFormat(pattern = "yyyy-MM-dd")*/
             Date birthDate, int height, int role) {
         memberService.insertMember(firstName, lastName, birthDate, height, role);
         return showAllMembers();

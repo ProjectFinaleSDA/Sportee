@@ -8,8 +8,8 @@ import com.sportee.sportee.data.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +33,8 @@ public class MemberService implements IMemberService {
         return members;
     }
 
-    @Override
     public void modifyMember(Integer id, Optional<String> firstName, Optional<String> lastName,
-                             Optional<Date> birthDate, Optional<Integer> height) {
+                             Optional<java.sql.Date> birthDate, Optional<Integer> height) {
         Optional<SporteeMember> member = memberRepository.findById(id);
         member.ifPresent(m -> {
             firstName.ifPresent(n -> m.setFirstName(n));

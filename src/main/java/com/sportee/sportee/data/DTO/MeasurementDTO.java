@@ -5,7 +5,7 @@ import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DAO.SporteeMember;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 public class MeasurementDTO {

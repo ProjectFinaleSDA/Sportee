@@ -3,7 +3,7 @@ package com.sportee.sportee.data.DTO;
 import com.sportee.sportee.data.DAO.Subscription;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 public class SubscriptionDTO {

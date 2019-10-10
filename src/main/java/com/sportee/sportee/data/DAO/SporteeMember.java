@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -24,7 +24,7 @@ public class SporteeMember {
 
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private java.sql.Date birthDate;
     private int height;
 
     @OneToOne

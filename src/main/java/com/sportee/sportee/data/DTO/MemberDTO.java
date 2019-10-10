@@ -4,7 +4,7 @@ import com.sportee.sportee.data.DAO.Role;
 import com.sportee.sportee.data.DAO.SporteeMember;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 public class MemberDTO {
