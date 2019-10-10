@@ -1,8 +1,10 @@
 package com.sportee.sportee.services;
 
+import com.sportee.sportee.data.DAO.Role;
 import com.sportee.sportee.data.DAO.SporteeMember;
 import com.sportee.sportee.data.DTO.MemberDTO;
 import com.sportee.sportee.data.repositories.MemberRepository;
+import com.sportee.sportee.data.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class MemberService implements IMemberService {
 
     private MemberRepository memberRepository;
+private RoleRepository roleRepository;
 
     @Autowired
     public MemberService(MemberRepository memberRepository) {
@@ -43,13 +46,15 @@ public class MemberService implements IMemberService {
     }
 
     @Override
-    public void insertMember(String firstName, String lastName, Date birthDate, int height, String role) {
+    public void insertMember(String firstName, String lastName, Date birthDate, int height, int roleId) {
+        Optional<Role> role =roleRepository.findById(roleId);
+        role.ifPresent(r -> {
         SporteeMember m = SporteeMember.builder().firstName(firstName).lastName(lastName)
-                .birthDate(birthDate).height(height).role(role).build();
+                .birthDate(birthDate).height(height).role(r).build();
+
         memberRepository.save(m);
-
+    });
     }
-
     @Override
     public void deleteMember(Integer id) {
         memberRepository.deleteById(id);

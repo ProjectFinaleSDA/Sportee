@@ -38,7 +38,7 @@ public class MemberController {
 
     @PostMapping("/members/insertMember")
     public ModelAndView insertMember(String firstName, String lastName, @DateTimeFormat(pattern = "yyyy-MM-dd")
-            Date birthDate, int height, String role) {
+            Date birthDate, int height, int role) {
         memberService.insertMember(firstName, lastName, birthDate, height, role);
         return showAllMembers();
     }
