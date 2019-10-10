@@ -2,6 +2,7 @@ package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,15 +28,18 @@ public class MemberController {
         return mv;
     }
 
+
+
     @GetMapping("/members/insertMember")
     public String insertMember() {
-        return "insertUser";
+        return "insertMember";
 
     }
 
     @PostMapping("/members/insertMember")
-    public ModelAndView insertMember(String firstName, String lastName, Date birthDate, int height) {
-        memberService.insertMember(firstName, lastName, birthDate, height);
+    public ModelAndView insertMember(String firstName, String lastName, @DateTimeFormat(pattern = "yyyy-MM-dd")
+            Date birthDate, int height, String role) {
+        memberService.insertMember(firstName, lastName, birthDate, height, role);
         return showAllMembers();
     }
 

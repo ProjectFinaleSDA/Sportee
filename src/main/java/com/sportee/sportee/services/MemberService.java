@@ -43,9 +43,9 @@ public class MemberService implements IMemberService {
     }
 
     @Override
-    public void insertMember(String firstName, String lastName, Date birthDate, int height) {
+    public void insertMember(String firstName, String lastName, Date birthDate, int height, String role) {
         SporteeMember m = SporteeMember.builder().firstName(firstName).lastName(lastName)
-                .birthDate(birthDate).height(height).build();
+                .birthDate(birthDate).height(height).role(role).build();
         memberRepository.save(m);
 
     }

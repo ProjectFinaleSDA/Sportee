@@ -42,10 +42,14 @@ public class SporteeMember {
     private List<Subscription> subscriptions;
 
     @Builder
-    public SporteeMember(String firstName, String lastName, Date birthDate, int height) {
+    public SporteeMember(String firstName, String lastName, Date birthDate, int height, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.height = height;
+        if(role.equals("ADMIN")){
+       this.role.setId(1);}
+        if(role.equals("CLIENT")){
+            this.role.setId(2);}
     }
 }
