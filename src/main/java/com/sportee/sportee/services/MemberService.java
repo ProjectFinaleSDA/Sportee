@@ -17,11 +17,12 @@ import java.util.Optional;
 public class MemberService implements IMemberService {
 
     private MemberRepository memberRepository;
-private RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, RoleRepository roleRepository) {
         this.memberRepository = memberRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -34,27 +35,29 @@ private RoleRepository roleRepository;
 
     @Override
     public void modifyMember(Integer id, Optional<String> firstName, Optional<String> lastName,
-                           Optional<Date> birthDate, Optional<Integer> height) {
+                             Optional<Date> birthDate, Optional<Integer> height) {
         Optional<SporteeMember> member = memberRepository.findById(id);
         member.ifPresent(m -> {
             firstName.ifPresent(n -> m.setFirstName(n));
             lastName.ifPresent(l -> m.setLastName(l));
-            birthDate.ifPresent(b ->m.setBirthDate(b));
-            height.ifPresent(h ->m.setHeight(h));
+            birthDate.ifPresent(b -> m.setBirthDate(b));
+            height.ifPresent(h -> m.setHeight(h));
             memberRepository.save(m);
         });
     }
 
     @Override
     public void insertMember(String firstName, String lastName, Date birthDate, int height, int roleId) {
-        Optional<Role> role =roleRepository.findById(roleId);
+        Optional<Role> role = roleRepository.findById(roleId);
         role.ifPresent(r -> {
-        SporteeMember m = SporteeMember.builder().firstName(firstName).lastName(lastName)
-                .birthDate(birthDate).height(height).role(r).build();
+            SporteeMember m = SporteeMember.builder().firstName(firstName).lastName(lastName)
+                    .birthDate(birthDate).height(height).role(r).build();
 
-        memberRepository.save(m);
-    });
+            memberRepository.save(m);
+
+        });
     }
+
     @Override
     public void deleteMember(Integer id) {
         memberRepository.deleteById(id);
