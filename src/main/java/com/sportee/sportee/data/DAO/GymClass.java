@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -29,6 +30,9 @@ public class GymClass {
     @OneToOne
     @JoinColumn(name = "room_id")
     private Room room;
+
+    @ManyToMany(mappedBy = "gymClass")
+    List<SporteeMember> sporteeMember;
 
 
 

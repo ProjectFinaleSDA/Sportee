@@ -17,19 +17,20 @@
 
 <p>
 <li th:each="m: ${members}">
-<!--    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">-->
-<!--        <img class="deleteUser">-->
-<!--    </a>-->
+    <a th:href="@{/members/{id}/delete(id=${m.id})}">
+        <img class="deleteUser">
+    </a>
     <span th:text="${m.firstName}">First name </span>
     <span th:text="${m.lastName}">Last name </span>
     <span th:text="${m.birthDate}">Birth date </span>
+    <span th:text="${m.height}">Height </span>
     <span th:text="${m.role}">Role </span>
 
 </li>
 
-<!--</p>-->
-<!--<p>-->
-<!--    <a href="/mvc/user/insert"> Add </a> new user-->
+</p>
+<p>
+    <a href="/members/insertMember"> Add </a> new member
 </p>
 </body>
 </html>

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -40,6 +41,12 @@ public class SporteeMember {
 
     @OneToMany(mappedBy = "sporteeMember")
     private List<Subscription> subscriptions;
+
+    @ManyToMany
+    @JoinTable(name = "participatio_to_class")
+    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "gym_class_id")
+    List<GymClass> gymClass;
 
     @Builder
     public SporteeMember(String firstName, String lastName, Date birthDate, int height, Role role) {
