@@ -29,4 +29,15 @@ public class MeasurementTypeService implements IMeasurementTypeService {
         all.forEach(m -> measurementTypes.add(new MeasurementTypeDTO(m)));
         return measurementTypes;
     }
+
+    @Override
+    public void insertMeasurementType(String name, String unit) {
+        MeasurementType m = MeasurementType.builder().name(name).unit(unit).build();
+        measurementTypeRepository.save(m);
+    }
+
+    @Override
+    public void deleteMeasurementType(Integer id) {
+        measurementTypeRepository.deleteById(id);
+    }
 }

@@ -1,12 +1,12 @@
 package com.sportee.sportee.data.DAO;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -25,5 +25,9 @@ public class MeasurementType {
     @OneToMany(mappedBy = "measurementType")
     private List<Measurement> measurements;
 
-
+    @Builder
+    public MeasurementType(String name, String unit) {
+        this.name = name;
+        this.unit = unit;
+    }
 }
