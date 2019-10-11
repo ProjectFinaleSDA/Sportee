@@ -43,7 +43,7 @@ public class MemberController {
     }
 
     @RequestMapping("/members/{id}/delete")
-    public ModelAndView deleteUser(@PathVariable Integer id) {
+    public ModelAndView deleteMember(@PathVariable Integer id) {
         memberService.deleteMember(id);
         return showAllMembers();
 

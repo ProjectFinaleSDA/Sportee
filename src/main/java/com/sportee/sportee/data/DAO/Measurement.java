@@ -1,5 +1,6 @@
 package com.sportee.sportee.data.DAO;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,11 @@ public class Measurement {
     @JoinColumn(name="member_id")
     private SporteeMember sporteeMember;
 
+    @Builder
+    public Measurement(Date date, int value, MeasurementType measurementType, SporteeMember sporteeMember) {
+        this.date = date;
+        this.value = value;
+        this.measurementType = measurementType;
+        this.sporteeMember = sporteeMember;
+    }
 }

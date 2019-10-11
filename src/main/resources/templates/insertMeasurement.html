@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Insert
+</p>
+<form th:action="@{/measurements/insertMeasurement}" method="POST">
+    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+    <p>Date: <input type="date" name="date"/></p>
+    <p>Value: <input type="number" name="value"/></p>
+    <p>Measurement type: <input type="number" name="measurementType"/></p>
+    <p>Member: <input type="number" name="member"/></p>
+
+
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>
