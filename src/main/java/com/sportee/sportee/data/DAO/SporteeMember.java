@@ -15,6 +15,7 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
+@Table(name="sportee_member")
 public class SporteeMember {
 
 

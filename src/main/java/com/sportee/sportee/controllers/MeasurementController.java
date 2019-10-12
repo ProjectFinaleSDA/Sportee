@@ -38,9 +38,9 @@ public class MeasurementController {
     }
 
     @PostMapping("/measurements/insertMeasurement")
-    public ModelAndView insertMeasurement(Date date, int value, int measurementType, String member) {
-        System.out.println(member);
-        //measurementService.insertMeasurement(date, value, measurementType, member.getId());
+    public ModelAndView insertMeasurement(Date date, int value, int measurementType, int sporteeMember) {
+//        System.out.println(sporteeMember);
+        measurementService.insertMeasurement(date, value, measurementType, sporteeMember);
         return showAllMeasurements();
     }
 

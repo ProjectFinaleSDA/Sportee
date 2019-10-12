@@ -18,6 +18,7 @@ public class MemberDTO {
 
 
     public MemberDTO(SporteeMember member) {
+        this.id = member.getId();
         this.firstName = member.getFirstName();
         this.lastName = member.getLastName();
         this.birthDate = member.getBirthDate();
