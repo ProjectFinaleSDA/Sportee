@@ -28,20 +28,20 @@ public class GymClassController {
         return mv;
     }
 
-    @GetMapping("gymClassTypes/insertGymClass")
+    @GetMapping("/gymClasses/insertGymClass")
     public String insertGymClass() {
         return "insertGymClass";
 
     }
 
-    @PostMapping("/gymClasss/insertGymClass")
+    @PostMapping("/gymClasses/insertGymClass")
     public ModelAndView insertGymClass(Date date, int startHour, int gymClassType, int room ) {
         gymClassService.insertGymClass(date, startHour, gymClassType,room);
         return showAllGymClasses();
     }
 
-    @RequestMapping("/gymClassTypes/{id}/delete")
-    public ModelAndView deleteGymClassTypes(@PathVariable Integer id) {
+    @RequestMapping("/gymClasses/{id}/delete")
+    public ModelAndView deleteGymClass(@PathVariable Integer id) {
         gymClassService.deleteGymClass(id);
         return showAllGymClasses();
 
