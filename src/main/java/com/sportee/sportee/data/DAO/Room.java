@@ -1,7 +1,7 @@
 package com.sportee.sportee.data.DAO;
 
 
-
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -26,5 +26,9 @@ public class Room {
     @OneToOne(mappedBy = "room")
     private GymClass gymClass;
 
-
+    @Builder
+    public Room(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
 }
