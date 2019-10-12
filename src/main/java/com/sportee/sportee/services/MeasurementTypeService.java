@@ -19,6 +19,9 @@ public class MeasurementTypeService implements IMeasurementTypeService {
     @Autowired
     public MeasurementTypeService(MeasurementTypeRepository measurementTypeRepository) {
         this.measurementTypeRepository = measurementTypeRepository;
+
+
+
     }
 
 
