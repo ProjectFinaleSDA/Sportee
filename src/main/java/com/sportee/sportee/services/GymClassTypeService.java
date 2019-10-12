@@ -30,11 +30,14 @@ public class GymClassTypeService implements IGymClassTypeService {
 
     @Override
     public void insertGymClassType(String name, int duration) {
+        GymClassType g = GymClassType.builder().name(name).duration(duration).build();
+        gymClassTypeRepository.save(g);
 
     }
 
     @Override
-    public void deleteMeasurementType(Integer id) {
+    public void deleteGymClassType(Integer id) {
+        gymClassTypeRepository.deleteById(id);
 
     }
 }

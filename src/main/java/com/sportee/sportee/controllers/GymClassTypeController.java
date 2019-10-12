@@ -26,22 +26,22 @@ public class GymClassTypeController {
         return mv;
     }
 
-//    @GetMapping("/measurementTypes/insertMeasurementType")
-//    public String insertMeasurementType() {
-//        return "insertMeasurementType";
-//
-//    }
-//
-//    @PostMapping("/measurementTypes/insertMeasurementType")
-//    public ModelAndView insertMeasurementType(String name, String unit) {
-//        measurementTypeService.insertMeasurementType(name, unit);
-//        return showAllMeasurementTypes();
-//    }
-//
-//    @RequestMapping("/measurementTypes/{id}/delete")
-//    public ModelAndView deleteMeasurementType(@PathVariable Integer id) {
-//        measurementTypeService.deleteMeasurementType(id);
-//        return showAllMeasurementTypes();
-//
-//    }
+    @GetMapping("gymClassTypes/insertGymClassType")
+    public String insertGymClassType() {
+        return "insertGymClassType";
+
+    }
+
+    @PostMapping("/gymClassTypes/insertGymClassType")
+    public ModelAndView insertGymClassType(String name, int duration ) {
+       gymClassTypeService.insertGymClassType(name, duration);
+        return showAllGymClassTypes();
+    }
+
+    @RequestMapping("/gymClassTypes/{id}/delete")
+    public ModelAndView deleteGymClassTypes(@PathVariable Integer id) {
+        gymClassTypeService.deleteGymClassType(id);
+        return showAllGymClassTypes();
+
+    }
 }

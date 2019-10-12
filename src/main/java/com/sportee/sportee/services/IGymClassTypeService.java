@@ -12,5 +12,5 @@ public interface IGymClassTypeService {
 
     void insertGymClassType(String name, int duration);
 
-    void deleteMeasurementType(Integer id);
+    void deleteGymClassType(Integer id);
 }
