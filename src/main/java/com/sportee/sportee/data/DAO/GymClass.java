@@ -1,5 +1,6 @@
 package com.sportee.sportee.data.DAO;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -34,8 +35,11 @@ public class GymClass {
     @ManyToMany(mappedBy = "gymClass")
     List<SporteeMember> sporteeMember;
 
-
-
-
-
+    @Builder
+    public GymClass(Date date, int startHour, GymClassType gymClassType, Room room) {
+        this.date = date;
+        this.startHour = startHour;
+        this.gymClassType = gymClassType;
+        this.room = room;
+    }
 }
