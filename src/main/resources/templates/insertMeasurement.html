@@ -6,7 +6,12 @@
 </p>
 <form th:action="@{/measurements/insertMeasurement}" method="POST">
     <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-    <p>Member: <input type="number" name="member"/></p>
+    <p>Member: <select required="required" name="member">
+        <option disabled="disabled" selected="selected" > --
+            alege membrul --</option>
+        <option th:each="member : ${members}" th:value="${member.id}"
+                th:text="${member.firstName}" ></option>
+    </select></p>
     <p>Date: <input type="date" name="date"/></p>
     <p>Measurement type: <input type="number" name="measurementType"/></p>
     <p>Value: <input type="number" name="value"/></p>

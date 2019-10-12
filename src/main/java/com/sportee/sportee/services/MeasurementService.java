@@ -43,14 +43,14 @@ public class MeasurementService implements IMeasurementService {
         Optional<MeasurementType> measurementType = measurementTypeRepository.findById(measurementTypeId);
         Optional<SporteeMember> sporteeMember = memberRepository.findById(sporteeMemberId);
         measurementType.ifPresent(t -> {
-            sporteeMember.ifPresent(s -> {
+//            sporteeMember.ifPresent(s -> {
                 Measurement m = Measurement.builder().date(date).value(value)
-                        .measurementType(t).sporteeMember(s).build();
+                        .measurementType(t).sporteeMember(sporteeMember.get()).build();
 
                 measurementRepository.save(m);
 
 
-            });
+//            });
         });
     }
 
