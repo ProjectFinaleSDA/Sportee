@@ -19,7 +19,7 @@ public class GymClassTypeController {
         this.gymClassTypeService = gymClassTypeService;
     }
 
-    @GetMapping({"/gymClassTypes/showAll", "/"})
+    @GetMapping({"/gymClassTypes/showAll"})
     public ModelAndView showAllGymClassTypes() {
         ModelAndView mv = new ModelAndView("gymClassTypes");
         mv.addObject("gymClassTypes", gymClassTypeService.getAllGymClassTypes());

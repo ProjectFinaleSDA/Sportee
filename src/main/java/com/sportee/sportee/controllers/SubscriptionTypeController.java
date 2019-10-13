@@ -14,7 +14,7 @@ public class SubscriptionTypeController {
     public SubscriptionTypeController(SubscriptionTypeService subscriptionTypeService) {
         this.subscriptionTypeService = subscriptionTypeService;
     }
-    @GetMapping({"/subscriptionTypes/showAll", "/"})
+    @GetMapping({"/subscriptionTypes/showAll"})
     public ModelAndView showAllMembers() {
         ModelAndView mv = new ModelAndView("subscriptionTypes");
         mv.addObject("subscriptionTypes", subscriptionTypeService.getAllSubscriptionType());

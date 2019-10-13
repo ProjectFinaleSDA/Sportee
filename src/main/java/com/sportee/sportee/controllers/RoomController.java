@@ -18,7 +18,7 @@ public class RoomController {
         this.roomService = roomService ;
     }
 
-    @GetMapping({"/rooms/showAll", "/"})
+    @GetMapping({"/rooms/showAll"})
     public ModelAndView showAllRooms() {
         ModelAndView mv = new ModelAndView("rooms");
         mv.addObject("rooms", roomService.getAllRooms());

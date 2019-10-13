@@ -7,30 +7,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Entity
 @NoArgsConstructor
-public class User {
-
+public class AuthenticationInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private int id;
-
     private String userName;
     private String password;
 
-    @OneToOne(mappedBy = "user")
-    private SporteeMember member;
-
-    @OneToOne
-    @JoinColumn(name = "authentication_id")
-    private AuthenticationInfo authenticationInfo;
-
+    @OneToOne(mappedBy = "authenticationInfo")
+    private User user;
 
     @Builder
-    public User(String userName, String password) {
+    public AuthenticationInfo(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }

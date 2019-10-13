@@ -20,7 +20,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping({"/members/showAll", "/"})
+    @GetMapping({"/members/showAll"})
     public ModelAndView showAllMembers() {
         ModelAndView mv = new ModelAndView("members");
         mv.addObject("members", memberService.getAllMembers());

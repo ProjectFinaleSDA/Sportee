@@ -20,7 +20,7 @@ public class MeasurementTypeController {
         this.measurementTypeService = measurementTypeService;
     }
 
-    @GetMapping({"/measurementTypes/showAll", "/"})
+    @GetMapping({"/measurementTypes/showAll"})
     public ModelAndView showAllMeasurementTypes() {
         ModelAndView mv = new ModelAndView("measurementTypes");
         mv.addObject("measurementTypes", measurementTypeService.getAllMeasurementTypes());

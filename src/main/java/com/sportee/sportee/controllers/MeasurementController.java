@@ -22,7 +22,7 @@ public class MeasurementController {
         this.memberService = memberService;
     }
 
-    @GetMapping({"/measurements/showAll", "/"})
+    @GetMapping({"/measurements/showAll"})
     public ModelAndView showAllMeasurements() {
         ModelAndView mv = new ModelAndView("measurements");
         mv.addObject("measurements", measurementService.getAllMeasurements());

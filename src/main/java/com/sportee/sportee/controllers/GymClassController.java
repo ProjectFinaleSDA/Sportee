@@ -21,7 +21,7 @@ public class GymClassController {
         this.gymClassService = gymClassService;
     }
 
-    @GetMapping({"/gymClasses/showAll", "/"})
+    @GetMapping({"/gymClasses/showAll"})
     public ModelAndView showAllGymClasses() {
         ModelAndView mv = new ModelAndView("gymClasses");
         mv.addObject("gymClasses", gymClassService.getAllGymClasses());

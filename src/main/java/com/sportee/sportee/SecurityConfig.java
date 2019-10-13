@@ -15,20 +15,22 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/members/**", "/measurementTypes/**", "/measurements/**",
-                "/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**", "/gymClasses/** ","/rooms/**").permitAll()
+        http.authorizeRequests()
+                .antMatchers("/contact.html/**","/schedule.html/**","/trainers.html/**","/home.html/**","/js/**","/scss/**","/fonts/**","/images/**","/css/**","/gym/**","/home/**","/members/**", "/measurementTypes/**", "/measurements/**",
+                "/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**", "/gymClasses/** ","/rooms/**")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
                 .and().logout().permitAll();
     }
 
 //    hardcodat ... ar putea fi folosit pentru admin
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        UserDetails user = User.withUsername("memuser").password("{noop}pass").roles("USER").build();
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    @Override
+//    protected UserDetailsService userDetailsService() {
+//        UserDetails user = User.withUsername("memuser").password("{noop}pass").roles("USER").build();
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
 
 }

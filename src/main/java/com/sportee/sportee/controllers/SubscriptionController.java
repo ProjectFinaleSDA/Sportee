@@ -16,7 +16,7 @@ public class SubscriptionController {
         this.subscriptionService = subscriptionService;
     }
 
-    @GetMapping({"/subscriptions/showAll", "/"})
+    @GetMapping({"/subscriptions/showAll"})
     public ModelAndView showAllSubscriptions() {
         ModelAndView mv = new ModelAndView("subscriptions");
         mv.addObject("subscriptions", subscriptionService.getAllSubscriptions());
