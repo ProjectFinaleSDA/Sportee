@@ -19,6 +19,7 @@ public class RoomService implements IRoomService {
 
     @Autowired
     public RoomService(RoomRepository roomRepository) {
+
         this.roomRepository = roomRepository;
     }
 

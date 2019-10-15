@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class RoomDTO {
+    private int id;
     private String name;
     private int capacity;
 

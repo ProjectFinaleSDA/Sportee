@@ -31,7 +31,7 @@ public class RoomController {
     }
 
     @PostMapping("/rooms/insertRoom")
-    public ModelAndView insertRoom(String name, int capacity ) {
+    public ModelAndView insertRoom(String name, Integer capacity) {
         roomService.insertRoom(name, capacity);
         return showAllRooms();
     }

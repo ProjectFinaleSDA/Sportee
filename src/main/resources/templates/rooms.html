@@ -17,9 +17,7 @@
 
 <p>
 <li th:each="m: ${rooms}">
-    <!--    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">-->
-    <!--        <img class="deleteUser">-->
-    <!--    </a>-->
+
     <span th:text="${m.name}">Name of room </span>
     <span th:text="${m.capacity}">Capacity of room </span>
 
