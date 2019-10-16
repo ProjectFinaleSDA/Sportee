@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -23,8 +24,8 @@ public class Room {
     private int capacity;
 
 
-    @OneToOne(mappedBy = "room")
-    private GymClass gymClass;
+    @OneToMany(mappedBy = "room")
+    private List<GymClass> gymClasses;
 
     @Builder
     public Room(String name, int capacity) {

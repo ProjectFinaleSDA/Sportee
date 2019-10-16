@@ -21,12 +21,22 @@ public class GymClassController {
         this.gymClassService = gymClassService;
     }
 
-    @GetMapping({"/gymClasses/showAll"})
+   @GetMapping({"/gymClasses/showAll"})
     public ModelAndView showAllGymClasses() {
         ModelAndView mv = new ModelAndView("gymClasses");
         mv.addObject("gymClasses", gymClassService.getAllGymClasses());
         return mv;
     }
+
+
+    @GetMapping({"/gymClasses/{date}/showDailySchedule"})
+    public ModelAndView showDailySchedule(@PathVariable Date date) {
+        ModelAndView mv = new ModelAndView("dailyTimetable");
+        mv.addObject("gymClasses", gymClassService.getAllGymClassesForSchedule(date));
+
+        return mv;
+    }
+
 
     @GetMapping("/gymClasses/insertGymClass")
     public String insertGymClass() {

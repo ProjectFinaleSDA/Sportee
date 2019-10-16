@@ -28,7 +28,7 @@ public class GymClass {
     @JoinColumn(name = "gym_class_type_id")
     private GymClassType gymClassType;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
 

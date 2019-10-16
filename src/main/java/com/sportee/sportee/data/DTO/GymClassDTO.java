@@ -22,4 +22,6 @@ public class GymClassDTO {
         this.gymClassType = gymClass.getGymClassType().getName();
         this.room = gymClass.getRoom().getName();
     }
+
+
 }

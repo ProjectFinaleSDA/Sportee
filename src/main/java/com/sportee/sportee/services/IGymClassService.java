@@ -11,7 +11,11 @@ import java.util.List;
 public interface IGymClassService {
     List<GymClassDTO> getAllGymClasses();
 
+    List<GymClassDTO> getAllGymClassesForSchedule(Date date);
+
     void insertGymClass(Date date, int startHour, int gymClassTypeId, int roomId);
 
     void deleteGymClass(Integer id);
+
+
 }
