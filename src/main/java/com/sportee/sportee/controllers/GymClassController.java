@@ -1,5 +1,6 @@
 package com.sportee.sportee.controllers;
 
+import com.sportee.sportee.data.DAO.StartHour;
 import com.sportee.sportee.services.GymClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 @Controller
@@ -29,14 +31,20 @@ public class GymClassController {
     }
 
 
-    @GetMapping({"/gymClasses/{date}/showDailySchedule"})
-    public ModelAndView showDailySchedule(@PathVariable Date date) {
-        ModelAndView mv = new ModelAndView("dailyTimetable");
-        mv.addObject("gymClasses", gymClassService.getAllGymClassesForSchedule(date));
-
-        return mv;
-    }
-
+//    @GetMapping({"/gymClasses/{date}/showDailySchedule"})
+//    public ModelAndView showDailySchedule(@PathVariable ArrayList<Date> date) {
+//        ModelAndView mv = new ModelAndView("dailyTimetable");
+//        mv.addObject("gymClasses", gymClassService.getAllGymClassesForSchedule(date));
+//
+//        return mv;
+//    }
+//    @GetMapping({"/gymClasses/{date}/showDailySchedule"})
+//    public ModelAndView showDailySchedule(@PathVariable ArrayList<Date> date) {
+//        ModelAndView mv = new ModelAndView("dailyTimetable");
+//        mv.addObject("gymClasses", gymClassService.getAllGymClassesByHours(date));
+//        System.out.println(gymClassService.getAllGymClassesByHours(date));
+//        return mv;
+//    }
 
     @GetMapping("/gymClasses/insertGymClass")
     public String insertGymClass() {
@@ -45,7 +53,7 @@ public class GymClassController {
     }
 
     @PostMapping("/gymClasses/insertGymClass")
-    public ModelAndView insertGymClass(Date date, int startHour, int gymClassType, int room ) {
+    public ModelAndView insertGymClass(Date date, StartHour startHour, int gymClassType, int room ) {
         gymClassService.insertGymClass(date, startHour, gymClassType,room);
         return showAllGymClasses();
     }

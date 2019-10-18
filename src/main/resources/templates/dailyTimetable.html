@@ -5,10 +5,33 @@
     <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
     <!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
     <style type="text/css">
-        table{ background-color:#FFFFE0;border-collapse:collapse;color:#000;font-size:18px; }
-        table thead { padding:5px;border:0;border-bottom:1px dotted #BDB76B; }
+        table {
+            background-color: #FFFFE0;
+            border-collapse: collapse;
+            color: #000;
+            font-size: 18px;
+        }
 
-        table td, th { padding:5px;border:0;border-bottom:1px dotted #BDB76B; }
+        table thead {
+            padding: 5px;
+            border: 0;
+            border-bottom: 1px dotted #BDB76B;
+        }
+
+        table td, th {
+            padding: 5px;
+            border: 0;
+            border-bottom: 1px dotted #BDB76B;
+        }
+
+        /* #switch {*/
+
+        /*    display: table-cell;*/
+        /*}*/
+        /* #switch1 {*/
+        /*display: block;}*/
+
+
     </style>
     <!-- End Styles -->
 
@@ -27,41 +50,98 @@
 <p>
 <table>
     <thead>
-    <tr>
-        <th>Date</th>
-        <th>Hour</th>
-        <th>Class</th>
-        <th> Room</th>
+    <td>Hour</td>
+    <td> Monday</td>
+    <td> Tuesday</td>
+    <td> Wednesday</td>
+    <td> Thursday</td>
+    <td> Friday</td>
+    <td> Saturday</td>
+    <td> Sunday</td>
 
-
-
-
-
-
-
-
-    </tr>
     </thead>
 
+    <!--    <tr>-->
+    <!--        <td> 09:00-10:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 10:00-11:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 11:00-12:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 12:00-13:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 13:00-14:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 14:00-15:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 15:00-16:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 16:00-17:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 17:00-18:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 18:00-19:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 19:00-20:00</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--        <td> 20:00-21:00</td>-->
+    <!--    </tr>-->
 
-    <tr th:each="m: ${gymClasses}">
 
-       <td> <span th:text="${m.date}">Date </span></td>
-        <td><span th:text="${m.startHour}">start hour </span></td>
-        <td><span th:text="${m.gymClassType}">gym class </span></td>
-       <td> <span th:text="${m.room}">Room </span></td>
+    <tr th:each="m: ${dailyTimetable}">
+
+        <!--               <td> <span th:text="${m.date}">Date </span></td>-->
+        <!--                <td><span th:text="${m.startHour}">start hour </span></td>-->
+        <td><span th:text="${m.name}">gym class </span>
+        <td th:each="g: ${m.gymClasses}">
+            <span th:text="${g.gymClassType.name}"></span><br>
+            <span th:text="${g.room.name}"></span>
+        </td>
+
 
     </tr>
+
+
+    <!--    <thead>-->
+    <!--    </thead>-->
+    <!--    <tr>-->
+    <!--        <td>09:00 - 10:00</td>-->
+    <!--        <td>10:00 - 11:00</td>-->
+    <!--        <td>11:00 - 12:00</td>-->
+    <!--        <td> 12:00 - 13:00</td>-->
+    <!--        <td> 13:00 - 14:00</td>-->
+
+    <!--    </tr>-->
+
+
+    <!--    <tr th:each="m: ${gymClasses}">-->
+
+    <!--       <td> <span th:text="${m.date}">Date </span></td>-->
+    <!--        <td><span th:text="${m.startHour}">start hour </span></td>-->
+    <!--        <td><span th:text="${m.gymClassType}">gym class </span>-->
+    <!--        <br><span th:text="${m.room}">Room </span></td>-->
+
+
+    <!--    </tr>-->
 </table>
 
 
-
-
 </p>
 
 
-<p>
-    <a href="/gymClasses/insertGymClass"> Add </a> new gym class
-</p>
+<!--<p>-->
+<!--    <a href="/gymClasses/insertGymClass"> Add </a> new gym class-->
+<!--</p>-->
 </body>
 </html>

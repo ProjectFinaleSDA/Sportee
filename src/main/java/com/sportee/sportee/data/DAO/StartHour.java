@@ -8,29 +8,24 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
-public class GymClassType {
-
+public class StartHour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Id
     private int id;
-    private  String name;
-    private int duration;
+    private String name;
 
-    @OneToMany(mappedBy = "gymClassType")
-    private List<GymClass>gymClasses;
+
+    @OneToMany(mappedBy = "startHour")
+    private List<GymClass> gymClasses;
 
     @Builder
-    public GymClassType(String name, int duration) {
+    public StartHour(String name, List<GymClass> gymClasses) {
         this.name = name;
-        this.duration = duration;
+        this.gymClasses = gymClasses;
     }
-
-
 }
-

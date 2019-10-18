@@ -3,6 +3,7 @@ package com.sportee.sportee.services;
 import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DAO.GymClassType;
 import com.sportee.sportee.data.DAO.Room;
+import com.sportee.sportee.data.DAO.StartHour;
 import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.data.repositories.GymClassRepository;
 import com.sportee.sportee.data.repositories.GymClassTypeRepository;
@@ -38,18 +39,43 @@ public class GymClassService implements IGymClassService {
         return gymClasses;
     }
 
-    @Override
-    public List<GymClassDTO> getAllGymClassesForSchedule(Date date) {
-        List<GymClassDTO> dailySchedule = new ArrayList<GymClassDTO>();
+//    @Override
+//    public List<HourDTO> getAllGymClassesByHours(ArrayList<Date> week) {
+//
+//        List<HourDTO> hourSchedule = new ArrayList<HourDTO>();
+//        for (Date date : week) {
+//            Iterable<GymClass> all = gymClassRepository.findAllGymClassByDate(date);
+//            for (GymClass g : all) {
+//                for (int i = 9; i <= 20; i++) {
+//                    if (g.getStartHour() == i) {
+//                        hourSchedule.add(new HourDTO(g));
+//                    } else{
+//                        hourSchedule.add(new HourDTO());
+//                    }
+//                }
+//            }
+//
+//        }
+//            return hourSchedule;
+//    }
+//    @Override
+//    public List<GymClassDTO> getAllGymClassesForSchedule(ArrayList<Date> week) {
+//        List<GymClassDTO> weekSchedule = new ArrayList<GymClassDTO>();
+//for (Date date: week){
+//        Iterable<GymClass> all = gymClassRepository.findAllGymClassByDate(date);
+//        all.forEach(
+//                g -> weekSchedule.add(new GymClassDTO(g)));}
+//        return weekSchedule;
+//    }
 
-        Iterable<GymClass> all = gymClassRepository.findAllGymClassByDate(date);
-        all.forEach(
-                g -> dailySchedule.add(new GymClassDTO(g)));
-        return dailySchedule;
-    }
+
+
+
+
+
 
     @Override
-    public void insertGymClass(Date date, int startHour, int gymClassTypeId, int roomId) {
+    public void insertGymClass(Date date, StartHour startHour, int gymClassTypeId, int roomId) {
         Optional<GymClassType> gymClassType = gymClassTypeRepository.findById(gymClassTypeId);
         Optional<Room> room = roomRepository.findById(roomId);
         gymClassType.ifPresent(g -> {

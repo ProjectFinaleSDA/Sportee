@@ -22,7 +22,7 @@ public class GymClass {
     @Id
     private int id;
     private Date date;
-    private int startHour;
+
 
     @ManyToOne
     @JoinColumn(name = "gym_class_type_id")
@@ -32,14 +32,20 @@ public class GymClass {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    @ManyToOne
+    @JoinColumn(name = "start_hour_id")
+    private StartHour startHour;
+
     @ManyToMany(mappedBy = "gymClass")
     List<SporteeMember> sporteeMember;
 
     @Builder
-    public GymClass(Date date, int startHour, GymClassType gymClassType, Room room) {
+    public GymClass(Date date, StartHour startHour, GymClassType gymClassType, Room room) {
         this.date = date;
         this.startHour = startHour;
         this.gymClassType = gymClassType;
         this.room = room;
     }
+
+
 }
