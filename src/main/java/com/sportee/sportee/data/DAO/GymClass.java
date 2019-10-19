@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class GymClass {
     @EqualsAndHashCode.Include
     @Id
     private int id;
-    private Date date;
+    private LocalDateTime date;
 
 
     @ManyToOne
@@ -32,17 +33,15 @@ public class GymClass {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @ManyToOne
-    @JoinColumn(name = "start_hour_id")
-    private StartHour startHour;
 
     @ManyToMany(mappedBy = "gymClass")
     List<SporteeMember> sporteeMember;
 
+
+
     @Builder
-    public GymClass(Date date, StartHour startHour, GymClassType gymClassType, Room room) {
+    public GymClass(LocalDateTime date, GymClassType gymClassType, Room room) {
         this.date = date;
-        this.startHour = startHour;
         this.gymClassType = gymClassType;
         this.room = room;
     }

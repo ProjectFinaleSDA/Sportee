@@ -3,16 +3,18 @@ package com.sportee.sportee.services;
 import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DAO.GymClassType;
 import com.sportee.sportee.data.DAO.Room;
-import com.sportee.sportee.data.DAO.StartHour;
 import com.sportee.sportee.data.DTO.GymClassDTO;
+import com.sportee.sportee.data.DTO.HourDTO;
 import com.sportee.sportee.data.repositories.GymClassRepository;
 import com.sportee.sportee.data.repositories.GymClassTypeRepository;
 import com.sportee.sportee.data.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,49 +41,16 @@ public class GymClassService implements IGymClassService {
         return gymClasses;
     }
 
-//    @Override
-//    public List<HourDTO> getAllGymClassesByHours(ArrayList<Date> week) {
 //
-//        List<HourDTO> hourSchedule = new ArrayList<HourDTO>();
-//        for (Date date : week) {
-//            Iterable<GymClass> all = gymClassRepository.findAllGymClassByDate(date);
-//            for (GymClass g : all) {
-//                for (int i = 9; i <= 20; i++) {
-//                    if (g.getStartHour() == i) {
-//                        hourSchedule.add(new HourDTO(g));
-//                    } else{
-//                        hourSchedule.add(new HourDTO());
-//                    }
-//                }
-//            }
-//
-//        }
-//            return hourSchedule;
-//    }
-//    @Override
-//    public List<GymClassDTO> getAllGymClassesForSchedule(ArrayList<Date> week) {
-//        List<GymClassDTO> weekSchedule = new ArrayList<GymClassDTO>();
-//for (Date date: week){
-//        Iterable<GymClass> all = gymClassRepository.findAllGymClassByDate(date);
-//        all.forEach(
-//                g -> weekSchedule.add(new GymClassDTO(g)));}
-//        return weekSchedule;
-//    }
-
-
-
-
-
 
 
     @Override
-    public void insertGymClass(Date date, StartHour startHour, int gymClassTypeId, int roomId) {
+    public void insertGymClass(LocalDateTime date, int gymClassTypeId, int roomId) {
         Optional<GymClassType> gymClassType = gymClassTypeRepository.findById(gymClassTypeId);
         Optional<Room> room = roomRepository.findById(roomId);
         gymClassType.ifPresent(g -> {
             room.ifPresent(r -> {
-                GymClass m = GymClass.builder().date(date).startHour(startHour)
-                        .gymClassType(g).room(r).build();
+                GymClass m = GymClass.builder().date(date).gymClassType(g).room(r).build();
 
                 gymClassRepository.save(m);
 
@@ -94,4 +63,30 @@ public class GymClassService implements IGymClassService {
     public void deleteGymClass(Integer id) {
         gymClassRepository.deleteById(id);
     }
+
+    @Override
+    public HourDTO[] getTimetable() {
+
+        HourDTO[] timetable = new HourDTO[12];
+        for(int i=0; i<12; i++){
+            timetable[i]=new HourDTO(String.format("%02d:00",i+9));
+        }
+
+        LocalDateTime currentDate = LocalDateTime.now();
+        int currentDateNumber = currentDate.getDayOfWeek().getValue();
+        LocalDateTime startDate = currentDate.minusDays(currentDateNumber + 1);
+        LocalDateTime endDate = startDate.plusDays(6);
+
+        Iterable<GymClass> all = gymClassRepository.findAllByDateBetween(startDate, endDate);
+        all.forEach(g -> {
+                    int position = g.getDate().getHour();
+                    timetable[position-9].addGymClass(new GymClassDTO(g));
+
+                }
+
+        );
+        return timetable;
+    }
+
+
 }

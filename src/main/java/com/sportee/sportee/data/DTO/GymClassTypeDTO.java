@@ -14,4 +14,5 @@ public class GymClassTypeDTO {
         this.name = gymClassType.getName();
         this.duration = gymClassType.getDuration();
     }
+
 }

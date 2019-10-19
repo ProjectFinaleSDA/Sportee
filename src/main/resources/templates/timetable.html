@@ -23,6 +23,14 @@
             border: 0;
             border-bottom: 1px dotted #BDB76B;
         }
+td.room.BLUE{
+    background: blue;
+}
+
+        td.room.RED{
+            background: red;
+        }
+
 
         /* #switch {*/
 
@@ -99,17 +107,14 @@
     <!--    </tr>-->
 
 
-    <tr th:each="m: ${dailyTimetable}">
-
+    <tr th:each="m: ${timetable}">
         <!--               <td> <span th:text="${m.date}">Date </span></td>-->
         <!--                <td><span th:text="${m.startHour}">start hour </span></td>-->
-        <td><span th:text="${m.name}">gym class </span>
-        <td th:each="g: ${m.gymClasses}">
-            <span th:text="${g.gymClassType.name}"></span><br>
-            <span th:text="${g.room.name}"></span>
+        <td><span th:text="${m.hour}">gym class </span>
+        <td class="room" th:each="g: ${m.classes}" >
+            <span th:text="${g.gymClassType}"></span><br>
+            <span  th:text="${g.room} "></span>
         </td>
-
-
     </tr>
 
 

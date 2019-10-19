@@ -6,10 +6,9 @@
 </p>
 <form th:action="@{/gymClasses/insertGymClass}" method="POST">
     <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-    <p>Date: <input type="date" name="date"/></p>
+    <p>Date: <input type="datetime-local" name="date"/></p>
     <p>Gym class: <input type="number" name="gymClassType"/></p>
-    <p>Start hour: <input type="number" name="startHour"/></p>
-    <p>Room: <input type="number" name="room"/></p>
+       <p>Room: <input type="number" name="room"/></p>
 
 
     <p><input type="submit" name="Submit"/></p>
