@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+        <link rel="stylesheet" type="text/css" href="/css/room.css"/>
     <!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
     <style type="text/css">
         table {
@@ -23,13 +23,9 @@
             border: 0;
             border-bottom: 1px dotted #BDB76B;
         }
-td.room.BLUE{
-    background: blue;
-}
 
-        td.room.RED{
-            background: red;
-        }
+
+
 
 
         /* #switch {*/
@@ -69,76 +65,15 @@ td.room.BLUE{
 
     </thead>
 
-    <!--    <tr>-->
-    <!--        <td> 09:00-10:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 10:00-11:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 11:00-12:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 12:00-13:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 13:00-14:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 14:00-15:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 15:00-16:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 16:00-17:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 17:00-18:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 18:00-19:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 19:00-20:00</td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td> 20:00-21:00</td>-->
-    <!--    </tr>-->
+        <tr th:each="m: ${timetable}">
 
-
-    <tr th:each="m: ${timetable}">
-        <!--               <td> <span th:text="${m.date}">Date </span></td>-->
-        <!--                <td><span th:text="${m.startHour}">start hour </span></td>-->
         <td><span th:text="${m.hour}">gym class </span>
-        <td class="room" th:each="g: ${m.classes}" >
+        <td  th:each="g: ${m.classes}" th:id="${g.room}">
             <span th:text="${g.gymClassType}"></span><br>
-            <span  th:text="${g.room} "></span>
+            <span  th:text="${g.room}" ></span>
         </td>
     </tr>
 
-
-    <!--    <thead>-->
-    <!--    </thead>-->
-    <!--    <tr>-->
-    <!--        <td>09:00 - 10:00</td>-->
-    <!--        <td>10:00 - 11:00</td>-->
-    <!--        <td>11:00 - 12:00</td>-->
-    <!--        <td> 12:00 - 13:00</td>-->
-    <!--        <td> 13:00 - 14:00</td>-->
-
-    <!--    </tr>-->
-
-
-    <!--    <tr th:each="m: ${gymClasses}">-->
-
-    <!--       <td> <span th:text="${m.date}">Date </span></td>-->
-    <!--        <td><span th:text="${m.startHour}">start hour </span></td>-->
-    <!--        <td><span th:text="${m.gymClassType}">gym class </span>-->
-    <!--        <br><span th:text="${m.room}">Room </span></td>-->
-
-
-    <!--    </tr>-->
 </table>
 
 

@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 @Controller
@@ -44,8 +47,13 @@ public class GymClassController {
     @PostMapping("/gymClasses/insertGymClass" )
 
     public ModelAndView insertGymClass(@RequestParam(value="date")
-                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date, int gymClassType, int room ) {
-        gymClassService.insertGymClass(date, gymClassType,room);
+                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+
+                                       @RequestParam(value="time")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime time, int gymClassType, int room ) {
+
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        gymClassService.insertGymClass(dateTime, gymClassType,room);
         return showAllGymClasses();
     }
 

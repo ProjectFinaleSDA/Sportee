@@ -74,7 +74,7 @@ public class GymClassService implements IGymClassService {
 
         LocalDateTime currentDate = LocalDateTime.now();
         int currentDateNumber = currentDate.getDayOfWeek().getValue();
-        LocalDateTime startDate = currentDate.minusDays(currentDateNumber + 1);
+        LocalDateTime startDate = currentDate.minusDays(currentDateNumber - 1);
         LocalDateTime endDate = startDate.plusDays(6);
 
         Iterable<GymClass> all = gymClassRepository.findAllByDateBetween(startDate, endDate);
