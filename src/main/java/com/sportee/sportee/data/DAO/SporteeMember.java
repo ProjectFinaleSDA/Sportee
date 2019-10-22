@@ -50,11 +50,12 @@ public class SporteeMember {
     List<GymClass> gymClass;
 
     @Builder
-    public SporteeMember(String firstName, String lastName, Date birthDate, int height, Role role) {
+    public SporteeMember(String firstName, String lastName, Date birthDate, int height, Role role, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.height = height;
        this.role=role;
+       this.user=user;
     }
 }

@@ -15,6 +15,7 @@ public class MemberDTO {
     private Date birthDate;
     private int height;
     private String role;
+    private int user;
 
 
     public MemberDTO(SporteeMember member) {
@@ -24,6 +25,7 @@ public class MemberDTO {
         this.birthDate = member.getBirthDate();
         this.height=member.getHeight();
         this.role = member.getRole().getName();
+        this.user=member.getUser().getId();
 
 
     }

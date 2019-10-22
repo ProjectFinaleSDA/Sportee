@@ -1,7 +1,8 @@
 package com.sportee.sportee.services;
 
-import com.sportee.sportee.data.DAO.AuthenticationInfo;
-import com.sportee.sportee.data.repositories.AuthenticationInfoRepository;
+
+import com.sportee.sportee.data.DAO.User;
+import com.sportee.sportee.data.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,21 +10,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService implements UserDetailsService {
+    private UserRepository userRepository;
 
-    private AuthenticationInfoRepository authenticationInfoRepository;
-
-    public LoginService(AuthenticationInfoRepository authenticationInfoRepository) {
-        this.authenticationInfoRepository = authenticationInfoRepository;
+    public LoginService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        AuthenticationInfo a = authenticationInfoRepository.findByUserName(s)
+        User ai = userRepository.findByUserName(s)
                 .orElseThrow(() -> new UsernameNotFoundException(s));
-        return new CustomUserDetails(a);
+        return new CustomUserDetails(ai);
     }
-
-
-
-
 }

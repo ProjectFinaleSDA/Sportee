@@ -1,16 +1,17 @@
 package com.sportee.sportee.services;
 
-import com.sportee.sportee.data.DAO.AuthenticationInfo;
+
+import com.sportee.sportee.data.DAO.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
-    private AuthenticationInfo authenticationInfo;
+    private User user;
 
-    public CustomUserDetails(AuthenticationInfo authenticationInfo) {
-        this.authenticationInfo = authenticationInfo;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
@@ -20,12 +21,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return authenticationInfo.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return authenticationInfo.getUserName();
+        return user.getUserName();
     }
 
     @Override

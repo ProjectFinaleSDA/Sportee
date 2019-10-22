@@ -24,13 +24,11 @@ public class User {
     @OneToOne(mappedBy = "user")
     private SporteeMember member;
 
-    @OneToOne
-    @JoinColumn(name = "authentication_id")
-    private AuthenticationInfo authenticationInfo;
 
 
     @Builder
-    public User(String userName, String password) {
+    public User(int id, String userName, String password) {
+        this.id=id;
         this.userName = userName;
         this.password = password;
     }

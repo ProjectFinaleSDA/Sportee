@@ -13,8 +13,10 @@ public interface IMemberService {
     void modifyMember(Integer id, Optional<String> firstName, Optional<String> lastName,
                       Optional<java.sql.Date> birthDate, Optional<Integer> height);
 
-    void insertMember(String firstName, String lastName, Date birthDate, int height, int role);
+    void insertMember(String firstName, String lastName, Date birthDate, int height, int role, int userId);
 
     void deleteMember(Integer id);
+
+
 
 }

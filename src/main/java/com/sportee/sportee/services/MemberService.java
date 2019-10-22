@@ -2,9 +2,11 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.Role;
 import com.sportee.sportee.data.DAO.SporteeMember;
+import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.MemberDTO;
 import com.sportee.sportee.data.repositories.MemberRepository;
 import com.sportee.sportee.data.repositories.RoleRepository;
+import com.sportee.sportee.data.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,13 @@ public class MemberService implements IMemberService {
 
     private MemberRepository memberRepository;
     private RoleRepository roleRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository, RoleRepository roleRepository) {
+    public MemberService(MemberRepository memberRepository, RoleRepository roleRepository, UserRepository userRepository) {
         this.memberRepository = memberRepository;
         this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -46,16 +50,20 @@ public class MemberService implements IMemberService {
     }
 
     @Override
-    public void insertMember(String firstName, String lastName, Date birthDate, int height, int roleId) {
+    public void insertMember(String firstName, String lastName, Date birthDate, int height, int roleId, int userId) {
         Optional<Role> role = roleRepository.findById(roleId);
+        Optional<User> user = userRepository.findById(userId);
         role.ifPresent(r -> {
-            SporteeMember m = SporteeMember.builder().firstName(firstName).lastName(lastName)
-                    .birthDate(birthDate).height(height).role(r).build();
+
+                    SporteeMember m = SporteeMember.builder().firstName(firstName).lastName(lastName)
+                    .birthDate(birthDate).height(height).role(r).user(user.get()).build();
 
             memberRepository.save(m);
 
         });
     }
+
+
 
     @Override
     public void deleteMember(Integer id) {
