@@ -38,10 +38,10 @@ public class HomeController {
     }
 
 
-    @GetMapping({"/login"})
+    @GetMapping({"/membership"})
     public String login()
     {
-        return "login";
+        return "membership";
     }
 
 
