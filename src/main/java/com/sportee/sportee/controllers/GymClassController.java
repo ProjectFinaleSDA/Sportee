@@ -31,12 +31,14 @@ public class GymClassController {
     }
 
 
-    @GetMapping({"/timetable"})
-    public ModelAndView showTimetable() {
-        ModelAndView mv = new ModelAndView("timetable");
-        mv.addObject("timetable", gymClassService.getTimetable());
-        return mv;
-    }
+//    @GetMapping({"/timetable"})
+//    public ModelAndView showTimetable() {
+//        ModelAndView mv = new ModelAndView("timetable");
+//        mv.addObject("timetable", gymClassService.getTimetable());
+//        return mv;
+//    }
+
+
 
     @GetMapping("/gymClasses/insertGymClass")
     public String insertGymClass() {
