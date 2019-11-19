@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+
 <head>
     <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
 </head>
@@ -16,17 +17,41 @@
 <!--</div>-->
 
 <p>
-<li th:each="m: ${measurementTypes}">
+<table border="2" width="70%" cellpadding="2">
+    <tr><th>Id</th><th>Name</th><th>Unit</th><th>Edit</th><th>Delete</th></tr>
+<tr th:each="m: ${measurementTypes}">
     <!--    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">-->
     <!--        <img class="deleteUser">-->
     <!--    </a>-->
-    <span th:text="${m.name}">Name </span>
-    <span th:text="${m.unit}">Unit </span>
+    <td th:text="${m.id}"> </td>
+
+    <td th:text="${m.name}"> </td>
+    <td th:text="${m.unit}">  </td>
+    <td> <a th:href="@{/measurementTypes/{id}/editMeasurementType(id=${m.id})}">
 
 
-</li>
+    Edit</a>
 
+    </td>
+    <td> <a th:href="@{/measurementTypes/{id}/delete(id=${m.id})}">
+        Delete</a>
+
+
+    </td>
+<!--    <td><a href="edit/${m.id}">Edit</a></td>-->
+<!--    <td><a href="delete/${m.id}">Delete</a></td>-->
+
+</tr>
+</table>
 </p>
+
+
+
+
+
+
+
+
 <p>
     <a href="/measurementTypes/insertMeasurementType"> Add </a> new measurement type
 </p>

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.Date;
 
 @Controller
+//@RequestMapping("/members")
 public class MemberController {
     private MemberService memberService;
 

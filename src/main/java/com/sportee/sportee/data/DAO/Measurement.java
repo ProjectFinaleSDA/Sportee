@@ -31,7 +31,7 @@ public class Measurement {
     @JoinColumn(name="member_id")
     private SporteeMember sporteeMember;
 
-    @Builder
+    @Builder(toBuilder=true)
     public Measurement(Date date, int value, MeasurementType measurementType, SporteeMember sporteeMember) {
         this.date = date;
         this.value = value;

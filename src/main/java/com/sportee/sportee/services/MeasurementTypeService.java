@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MeasurementTypeService implements IMeasurementTypeService {
@@ -17,9 +18,6 @@ public class MeasurementTypeService implements IMeasurementTypeService {
     @Autowired
     public MeasurementTypeService(MeasurementTypeRepository measurementTypeRepository) {
         this.measurementTypeRepository = measurementTypeRepository;
-
-
-
     }
 
 
@@ -37,8 +35,40 @@ public class MeasurementTypeService implements IMeasurementTypeService {
         measurementTypeRepository.save(m);
     }
 
+
     @Override
     public void deleteMeasurementType(Integer id) {
         measurementTypeRepository.deleteById(id);
     }
+
+    @Override
+    public void editMeasurementType(Integer id, Optional<String> name, Optional<String> unit) {
+        System.out.println(id);
+        Optional<MeasurementType> measurementType = measurementTypeRepository.findById(id);
+
+        measurementType.ifPresent(m -> {
+//            m.getId();
+            System.out.println(m.getId());
+            name.ifPresent(n -> m.setName(n));
+            unit.ifPresent(u -> m.setUnit(u));
+
+            measurementTypeRepository.save(m);
+        });
+
+    }
+
+
+    @Override
+    public Optional<MeasurementType> getMeasurementType(Integer id) {
+        Optional<MeasurementType> measurementType = measurementTypeRepository.findById(id);
+
+
+//       if(measurementType.isPresent())
+//       {        return measurementType;}
+
+
+        return measurementType;
+    }
+
+
 }

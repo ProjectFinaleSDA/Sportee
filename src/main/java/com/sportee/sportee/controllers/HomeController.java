@@ -16,7 +16,7 @@ public class HomeController {
         this.gymClassService = gymClassService;
     }
 
-    @GetMapping({"/home","/"})
+    @GetMapping({"/","/home"})
     public String home()
     {
         return "home";

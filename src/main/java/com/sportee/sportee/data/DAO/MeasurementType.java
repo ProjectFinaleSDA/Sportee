@@ -26,7 +26,8 @@ public class MeasurementType {
     private List<Measurement> measurements;
 
     @Builder
-    public MeasurementType(String name, String unit) {
+    public MeasurementType(int id, String name, String unit) {
+        this.id = id;
         this.name = name;
         this.unit = unit;
     }

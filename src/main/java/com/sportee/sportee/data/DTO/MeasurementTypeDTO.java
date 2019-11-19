@@ -11,6 +11,7 @@ public class MeasurementTypeDTO {
     private String unit;
 
     public MeasurementTypeDTO(MeasurementType measurementType) {
+        this.id=measurementType.getId();
         this.name = measurementType.getName();
         this.unit = measurementType.getUnit();
     }
