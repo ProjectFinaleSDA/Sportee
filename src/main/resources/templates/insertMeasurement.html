@@ -11,20 +11,24 @@
         <option disabled="disabled" selected="selected" > --
             alege membrul --</option>
         <option th:each="sporteeMember : ${members}" th:value="${sporteeMember.id}"
-                th:text="${sporteeMember.firstName}" ></option>
+                th:text="${sporteeMember.firstName}+' '+${sporteeMember.lastName}" ></option>
 
         </select>
 
-<!--        <select th:field="*{members}" class="form-control" id="sporteeMember" name="sporteeMember">-->
-<!--            <option value="">Select member</option>-->
-<!--            <option-->
-<!--                    th:each="member : ${members}"-->
-<!--                    th:value="${member.id}"-->
-<!--                    th:text="${member.firstName}"></option>-->
-<!--        </select>-->
     </p>
     <p>Date: <input type="date" name="date"/></p>
-    <p>Measurement type: <input type="number" name="measurementType"/></p>
+
+    <p>Measurement Type:
+        <select class="form-control" required="required" name="measurementType" >
+            <option disabled="disabled" selected="selected" > --
+                alege tip masuratoare --</option>
+            <option th:each="measurementType : ${measurementTypes}" th:value="${measurementType.id}"
+                    th:text="${measurementType.name}" ></option>
+
+        </select>
+
+    </p>
+
     <p>Value: <input type="number" name="value"/></p>
 
 

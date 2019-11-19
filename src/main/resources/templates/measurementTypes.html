@@ -7,24 +7,13 @@
 </head>
 
 <body>
-<!--<div class="logout" style="float:right">-->
-<!--    <p th:text="#{}"> Hallo </p>-->
-<!--    <span th:text="${#httpServletRequest.remoteUser}">User</span>-->
-<!--    <form th:action="@{/logout}" method="post">-->
-<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-<!--        <input type="submit" value="Logout"/>-->
-<!--    </form>-->
-<!--</div>-->
+
 
 <p>
 <table border="2" width="70%" cellpadding="2">
     <tr><th>Id</th><th>Name</th><th>Unit</th><th>Edit</th><th>Delete</th></tr>
 <tr th:each="m: ${measurementTypes}">
-    <!--    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">-->
-    <!--        <img class="deleteUser">-->
-    <!--    </a>-->
     <td th:text="${m.id}"> </td>
-
     <td th:text="${m.name}"> </td>
     <td th:text="${m.unit}">  </td>
     <td> <a th:href="@{/measurementTypes/{id}/editMeasurementType(id=${m.id})}">
@@ -38,8 +27,7 @@
 
 
     </td>
-<!--    <td><a href="edit/${m.id}">Edit</a></td>-->
-<!--    <td><a href="delete/${m.id}">Delete</a></td>-->
+
 
 </tr>
 </table>

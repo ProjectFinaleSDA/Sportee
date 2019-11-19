@@ -44,10 +44,10 @@ public class MeasurementService implements IMeasurementService {
         Optional<SporteeMember> sporteeMember = memberRepository.findById(sporteeMemberId);
         measurementType.ifPresent(t -> {
 //            sporteeMember.ifPresent(s -> {
-                Measurement m = Measurement.builder().date(date).value(value)
-                        .measurementType(t).sporteeMember(sporteeMember.get()).build();
+            Measurement m = Measurement.builder().date(date).value(value)
+                    .measurementType(t).sporteeMember(sporteeMember.get()).build();
 
-                measurementRepository.save(m);
+            measurementRepository.save(m);
 
 
 //            });
@@ -55,7 +55,22 @@ public class MeasurementService implements IMeasurementService {
     }
 
     @Override
-    public void deleteMeasurement(Integer id){
+    public void deleteMeasurement(Integer id) {
         measurementRepository.deleteById(id);
+    }
+
+    @Override
+    public void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<SporteeMember> sporteeMember) {
+        Optional<Measurement> measurement = measurementRepository.findById(id);
+
+
+        measurement.ifPresent(m -> {
+            date.ifPresent(d -> m.setDate(d));
+            value.ifPresent(v -> m.setValue(v));
+//            measurementType.ifPresent(mt -> m.setMeasurementType(mt));
+//            sporteeMember.ifPresent(s -> m.setSporteeMember(s));
+
+            measurementRepository.save(m);
+        });
     }
 }

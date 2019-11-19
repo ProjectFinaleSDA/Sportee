@@ -7,6 +7,7 @@ import com.sportee.sportee.data.DTO.MeasurementTypeDTO;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface IMeasurementService {
 
@@ -15,4 +16,6 @@ public interface IMeasurementService {
     void insertMeasurement(Date date, int value, int measurementTypeId, int sporteeMemberId);
 
     void deleteMeasurement(Integer id);
+
+    void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<SporteeMember> sporteeMember);
 }

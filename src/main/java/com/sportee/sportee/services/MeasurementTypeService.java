@@ -43,7 +43,7 @@ public class MeasurementTypeService implements IMeasurementTypeService {
 
     @Override
     public void editMeasurementType(Integer id, Optional<String> name, Optional<String> unit) {
-        System.out.println(id);
+
         Optional<MeasurementType> measurementType = measurementTypeRepository.findById(id);
 
         measurementType.ifPresent(m -> {

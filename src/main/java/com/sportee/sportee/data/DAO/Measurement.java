@@ -32,7 +32,8 @@ public class Measurement {
     private SporteeMember sporteeMember;
 
     @Builder(toBuilder=true)
-    public Measurement(Date date, int value, MeasurementType measurementType, SporteeMember sporteeMember) {
+    public Measurement(int id, Date date, int value, MeasurementType measurementType, SporteeMember sporteeMember) {
+        this.id=id;
         this.date = date;
         this.value = value;
         this.measurementType = measurementType;

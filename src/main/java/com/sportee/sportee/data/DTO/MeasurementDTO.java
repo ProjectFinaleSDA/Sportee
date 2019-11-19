@@ -19,6 +19,7 @@ public class MeasurementDTO {
     private String sporteeMember;
 
     public MeasurementDTO(Measurement measurement) {
+        this.id = measurement.getId();
         this.date = measurement.getDate();
         this.value = measurement.getValue();
         this.unit = measurement.getMeasurementType().getUnit();
