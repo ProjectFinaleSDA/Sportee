@@ -15,5 +15,7 @@ public interface IMeasurementTypeService {
 
     void editMeasurementType(Integer id, Optional<String> name, Optional<String> unit);
 
-  Optional<MeasurementType> getMeasurementType(Integer id);
+
+
+    Optional<MeasurementType> findMeasurementTypeById(Integer id);
 }

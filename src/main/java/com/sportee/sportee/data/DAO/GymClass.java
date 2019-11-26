@@ -40,7 +40,8 @@ public class GymClass {
 
 
     @Builder
-    public GymClass(LocalDateTime date, GymClassType gymClassType, Room room) {
+    public GymClass(int id, LocalDateTime date, GymClassType gymClassType, Room room) {
+        this.id=id;
         this.date = date;
         this.gymClassType = gymClassType;
         this.room = room;

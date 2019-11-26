@@ -47,9 +47,8 @@ public class MeasurementTypeService implements IMeasurementTypeService {
         Optional<MeasurementType> measurementType = measurementTypeRepository.findById(id);
 
         measurementType.ifPresent(m -> {
-//            m.getId();
-            System.out.println(m.getId());
             name.ifPresent(n -> m.setName(n));
+
             unit.ifPresent(u -> m.setUnit(u));
 
             measurementTypeRepository.save(m);
@@ -58,15 +57,11 @@ public class MeasurementTypeService implements IMeasurementTypeService {
     }
 
 
+
+
     @Override
-    public Optional<MeasurementType> getMeasurementType(Integer id) {
+    public Optional<MeasurementType> findMeasurementTypeById(Integer id) {
         Optional<MeasurementType> measurementType = measurementTypeRepository.findById(id);
-
-
-//       if(measurementType.isPresent())
-//       {        return measurementType;}
-
-
         return measurementType;
     }
 

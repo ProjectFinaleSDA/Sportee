@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 
 @Controller
@@ -23,22 +24,12 @@ public class GymClassController {
         this.gymClassService = gymClassService;
     }
 
-   @GetMapping({"/gymClasses/showAll"})
+    @GetMapping({"/gymClasses/showAll"})
     public ModelAndView showAllGymClasses() {
         ModelAndView mv = new ModelAndView("gymClasses");
         mv.addObject("gymClasses", gymClassService.getAllGymClasses());
         return mv;
     }
-
-
-//    @GetMapping({"/timetable"})
-//    public ModelAndView showTimetable() {
-//        ModelAndView mv = new ModelAndView("timetable");
-//        mv.addObject("timetable", gymClassService.getTimetable());
-//        return mv;
-//    }
-
-
 
     @GetMapping("/gymClasses/insertGymClass")
     public String insertGymClass() {
@@ -46,16 +37,16 @@ public class GymClassController {
 
     }
 
-    @PostMapping("/gymClasses/insertGymClass" )
+    @PostMapping("/gymClasses/insertGymClass")
 
-    public ModelAndView insertGymClass(@RequestParam(value="date")
-                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+    public ModelAndView insertGymClass(@RequestParam(value = "date")
+                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
 
-                                       @RequestParam(value="time")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime time, int gymClassType, int room ) {
+                                       @RequestParam(value = "time")
+                                       @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime time, int gymClassType, int room) {
 
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        gymClassService.insertGymClass(dateTime, gymClassType,room);
+        gymClassService.insertGymClass(dateTime, gymClassType, room);
         return showAllGymClasses();
     }
 
@@ -66,6 +57,33 @@ public class GymClassController {
 
     }
 
+
+    @GetMapping("/gymClasses/{id}/editGymClass")
+    public String editGymClass() {
+        return "editGymClass";
+
+    }
+
+    @PostMapping("/gymClasses/{id}/editGymClass")
+    public ModelAndView editGymClass(@PathVariable Integer id,
+                                     @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> date,
+                                     @RequestParam(value = "time") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) Optional<LocalTime> time,
+                                     Optional<Integer> gymClassType, Optional<Integer> room) {
+//        LocalDate localDate =null;
+//        LocalTime localTime = null;
+//        if (date.isPresent()) {
+//            localDate = date.get();
+//        }
+//        if (time.isPresent()) {
+//            localTime = time.get();
+//        }
+//        LocalDateTime dateTime = LocalDateTime.of(localDate, localTime);
+
+
+        Optional<LocalDateTime> dateTime= Optional.of(LocalDateTime.of(date.get(), time.get()));
+        gymClassService.editGymClass(id, dateTime, gymClassType, room);
+        return showAllGymClasses();
+    }
 
 
 }

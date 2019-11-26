@@ -36,7 +36,9 @@ public class MeasurementTypeController {
 //        return mv;
 //    }
     @GetMapping("/{id}/editMeasurementType")
-    public String editMeasurementType() {
+    public String editMeasurementType(@PathVariable Integer id,Model model) {
+        Optional<MeasurementType> measurementType = measurementTypeService.findMeasurementTypeById(id);
+        model.addAttribute("measurementType", measurementType);
         return "editMeasurementType";
 
     }
@@ -46,6 +48,8 @@ public class MeasurementTypeController {
         measurementTypeService.editMeasurementType(id, name, unit);
         return showAllMeasurementTypes();
     }
+
+
 
     @GetMapping("/insertMeasurementType")
     public String insertMeasurementType() {

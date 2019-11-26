@@ -9,14 +9,16 @@ import java.time.LocalDateTime;
 @Getter
 public class GymClassDTO {
 
-
+    private int id;
     private LocalDateTime date;
     private String gymClassType;
     private String room;
 
+
     public GymClassDTO(GymClass gymClass) {
+        this.id = gymClass.getId();
         this.date = gymClass.getDate();
-         this.gymClassType = gymClass.getGymClassType().getName();
+        this.gymClassType = gymClass.getGymClassType().getName();
         this.room = gymClass.getRoom().getName();
     }
 

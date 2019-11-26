@@ -5,15 +5,15 @@
     Edit
 </p>
 
-<form th:action="@{editMeasurementType(measurementType.id)}" method="POST">
+<form action="#" th:action="@{editMeasurementType(measurementType.id)}" method="POST">
     <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
 
 
 
 <!--    <p>Measurement Type: <input type="text" name="name"/></p>-->
 
-    <p>Measurement Type: <input type="text" name="name"/></p>
-    <p>Unit: <input type="text" name="unit"/></p>
+    <p>Measurement Type: <input type="text"  name="name" th:text="${param.name}"/></p>
+   <p> Unit: <input type="text" name="unit" th:text="${param.unit}" /></p>
 
 
 
