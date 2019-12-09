@@ -2,32 +2,36 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.Measurement;
 import com.sportee.sportee.data.DAO.MeasurementType;
-import com.sportee.sportee.data.DAO.Role;
-import com.sportee.sportee.data.DAO.SporteeMember;
+import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.MeasurementDTO;
 import com.sportee.sportee.data.repositories.MeasurementRepository;
 import com.sportee.sportee.data.repositories.MeasurementTypeRepository;
-import com.sportee.sportee.data.repositories.MemberRepository;
+import com.sportee.sportee.data.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.security.RolesAllowed;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+//@EnableGlobalMethodSecurity(jsr250Enabled = true)
+//@RolesAllowed("ROLE_TRAINER")
 public class MeasurementService implements IMeasurementService {
     private MeasurementRepository measurementRepository;
     private MeasurementTypeRepository measurementTypeRepository;
-    private MemberRepository memberRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public MeasurementService(MeasurementRepository measurementRepository,
-                              MeasurementTypeRepository measurementTypeRepository, MemberRepository memberRepository) {
+                              MeasurementTypeRepository measurementTypeRepository,UserRepository userRepository) {
         this.measurementRepository = measurementRepository;
         this.measurementTypeRepository = measurementTypeRepository;
-        this.memberRepository = memberRepository;
+        this.userRepository = userRepository;
+
     }
 
     @Override
@@ -39,13 +43,13 @@ public class MeasurementService implements IMeasurementService {
     }
 
     @Override
-    public void insertMeasurement(Date date, int value, int measurementTypeId, int sporteeMemberId) {
+    public void insertMeasurement(Date date, int value, int measurementTypeId, int userId) {
         Optional<MeasurementType> measurementType = measurementTypeRepository.findById(measurementTypeId);
-        Optional<SporteeMember> sporteeMember = memberRepository.findById(sporteeMemberId);
+        Optional<User> user = userRepository.findById(userId);
         measurementType.ifPresent(t -> {
 //            sporteeMember.ifPresent(s -> {
             Measurement m = Measurement.builder().date(date).value(value)
-                    .measurementType(t).sporteeMember(sporteeMember.get()).build();
+                    .measurementType(t).user(user.get()).build();
 
             measurementRepository.save(m);
 
@@ -60,7 +64,7 @@ public class MeasurementService implements IMeasurementService {
     }
 
     @Override
-    public void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<SporteeMember> sporteeMember) {
+    public void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<User> user) {
         Optional<Measurement> measurement = measurementRepository.findById(id);
 
 

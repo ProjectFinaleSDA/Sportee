@@ -7,11 +7,11 @@
 <form th:action="@{/measurements/insertMeasurement}" method="POST">
     <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
     <p>Member:
-        <select class="form-control" required="required" name="sporteeMember" >
+        <select class="form-control" required="required" name="user" >
         <option disabled="disabled" selected="selected" > --
             alege membrul --</option>
-        <option th:each="sporteeMember : ${members}" th:value="${sporteeMember.id}"
-                th:text="${sporteeMember.firstName}+' '+${sporteeMember.lastName}" ></option>
+        <option th:each="user : ${users}" th:value="${user.id}"
+                th:text="${user.firstName}+' '+${user.lastName}" ></option>
 
         </select>
 

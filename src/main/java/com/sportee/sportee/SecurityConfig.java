@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/contact/**","/schedule/**","/trainers/**","/home/**","/js/**","/scss/**",
                         "/fonts/**","/images/**","/css/**","/gym/**","/home/**","/members/**",
                         "/measurementTypes/**", "/measurements/**","/membership/**", "/timetable/**",
-                "/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**", "/gymClasses/**","/rooms/**")
+                "/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**", "/gymClasses/**","/rooms/**","/users/**" )
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()

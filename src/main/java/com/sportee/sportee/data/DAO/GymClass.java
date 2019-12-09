@@ -35,7 +35,7 @@ public class GymClass {
 
 
     @ManyToMany(mappedBy = "gymClass")
-    List<SporteeMember> sporteeMember;
+    List<User> user;
 
 
 

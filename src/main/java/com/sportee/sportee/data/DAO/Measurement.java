@@ -28,15 +28,15 @@ public class Measurement {
     private MeasurementType measurementType;
 
     @ManyToOne
-    @JoinColumn(name="member_id")
-    private SporteeMember sporteeMember;
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Builder(toBuilder=true)
-    public Measurement(int id, Date date, int value, MeasurementType measurementType, SporteeMember sporteeMember) {
+    public Measurement(int id, Date date, int value, MeasurementType measurementType, User user) {
         this.id=id;
         this.date = date;
         this.value = value;
         this.measurementType = measurementType;
-        this.sporteeMember = sporteeMember;
+        this.user = user;
     }
 }

@@ -18,9 +18,12 @@ public class Role {
     private int id;
 
     private String name;
+//    public final String ADMIN = "1";
+//    public final String TRAINER = "2";
+//    public final String USER = "3";
 
     @OneToMany(mappedBy = "role")
-    private List<SporteeMember> sporteeMembers;
+    private List<User> users;
 
 
 }

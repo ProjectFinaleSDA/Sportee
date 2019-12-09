@@ -1,10 +1,10 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.data.DAO.MeasurementType;
-import com.sportee.sportee.data.DAO.SporteeMember;
+import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.services.MeasurementService;
 import com.sportee.sportee.services.MeasurementTypeService;
-import com.sportee.sportee.services.MemberService;
+import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +17,13 @@ import java.util.Optional;
 public class MeasurementController {
 
     private MeasurementService measurementService;
-    private MemberService memberService;
+    private UserService userService;
     private MeasurementTypeService measurementTypeService;
 
     @Autowired
-    public MeasurementController(MeasurementService measurementService, MemberService memberService, MeasurementTypeService measurementTypeService) {
+    public MeasurementController(MeasurementService measurementService, UserService userService, MeasurementTypeService measurementTypeService) {
         this.measurementService = measurementService;
-        this.memberService = memberService;
+        this.userService = userService;
         this.measurementTypeService = measurementTypeService;
     }
 
@@ -37,7 +37,7 @@ public class MeasurementController {
     @GetMapping("/measurements/insertMeasurement")
     public ModelAndView insertMeasurement() {
         ModelAndView mv = new ModelAndView("insertMeasurement");
-        mv.addObject("members", memberService.getAllMembers());
+        mv.addObject("users", userService.getAllUsers());
         mv.addObject("measurementTypes", measurementTypeService.getAllMeasurementTypes());
 
         mv.addObject("selectedMember", "");
@@ -46,9 +46,9 @@ public class MeasurementController {
     }
 
     @PostMapping("/measurements/insertMeasurement")
-    public ModelAndView insertMeasurement(Date date, int value, int measurementType, int sporteeMember) {
+    public ModelAndView insertMeasurement(Date date, int value, int measurementType, int user) {
 //        System.out.println(sporteeMember);
-        measurementService.insertMeasurement(date, value, measurementType, sporteeMember);
+        measurementService.insertMeasurement(date, value, measurementType, user);
         return showAllMeasurements();
     }
 
@@ -62,7 +62,7 @@ public class MeasurementController {
     @GetMapping("/measurements/{id}/editMeasurement")
     public ModelAndView editMeasurement() {
         ModelAndView mv = new ModelAndView("editMeasurement");
-        mv.addObject("members", memberService.getAllMembers());
+        mv.addObject("users", userService.getAllUsers());
         mv.addObject("measurementTypes", measurementTypeService.getAllMeasurementTypes());
 
         mv.addObject("selectedMember", "");
@@ -72,8 +72,8 @@ public class MeasurementController {
     }
 
     @PostMapping("/measurements/{id}/editMeasurement")
-    public ModelAndView editMeasurement(@PathVariable Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<SporteeMember> sporteeMember) {
-        measurementService.editMeasurement(id, date, value, measurementType, sporteeMember);
+    public ModelAndView editMeasurement(@PathVariable Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<User> user) {
+        measurementService.editMeasurement(id, date, value, measurementType, user);
         return showAllMeasurements();
     }
 

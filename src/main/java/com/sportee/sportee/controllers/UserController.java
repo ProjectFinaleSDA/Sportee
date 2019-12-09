@@ -1,22 +1,27 @@
 package com.sportee.sportee.controllers;
 
-import com.sportee.sportee.services.MemberService;
 import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Controller
 
 public class UserController {
     private UserService userService;
-    private MemberService memberService;
+//    private MemberService memberService;
 
     @Autowired
-    public UserController(UserService userService, MemberService memberService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.memberService = memberService;
+//        this.memberService = memberService;
     }
 
 
@@ -27,34 +32,55 @@ public class UserController {
 //        return "login";
 //    }
 
-    @RequestMapping({"/user/showAll", "/"})
+    @RequestMapping({"/users/showAll", "/"})
     public ModelAndView showAllUsers() {
         ModelAndView mv = new ModelAndView("users");
         mv.addObject("users", userService.getAllUsers());
         return mv;
     }
 
-    @GetMapping("/user/insert")
+    @GetMapping("/users/insert")
     public String insertUser() {
         return "insertUser";
 
     }
 
-    @RequestMapping({"/member/insertMember", "/"})
-    public ModelAndView insertMemberDetails() {
-        ModelAndView mv = new ModelAndView("insertMember");
-                return mv;
+    @PostMapping("/users/insert")
+    public ModelAndView insertUser(String userName, String password, String firstName, String lastName,
+                                  Date birthDate,
+
+
+                                   int height, int role) {
+
+
+        userService.insertUser(userName, password, firstName, lastName, birthDate, height, role);
+
+        ModelAndView mv = new ModelAndView("membership");
+        return mv;
+
+
     }
+//    @RequestMapping("/user/{id}/insertMemberDetails")
+//    public ModelAndView insertMemberDetails() {
+//        ModelAndView mv = new ModelAndView("insertMemberDetails");
+//                return mv;
+//
+//    }
+//
+//    @PostMapping("/user/{id}/insertMemberDetails")
+//    public ModelAndView insertMemberDetails( @PathVariable Integer id, String firstName, String lastName, /*@DateTimeFormat(pattern = "yyyy-MM-dd")*/
+//            Date birthDate, int height) {
+//        memberService.insertMemberDetails(firstName, lastName, birthDate, height, id);
+//        ModelAndView mv = new ModelAndView("members");
+//        return mv;
+//    }
 
-    @PostMapping("/user/insert")
-    public ModelAndView insertUser(String name,  String password) {
-        userService.insertUser(name, password);
-        return insertMemberDetails();
 
 
-    }
 
-    @RequestMapping("/user/{id}/delete")
+
+
+    @RequestMapping("/users/{id}/delete")
     public ModelAndView deleteUser(@PathVariable Integer id) {
         userService.delete(id);
         return showAllUsers();

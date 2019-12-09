@@ -11,13 +11,13 @@ public class SubscriptionDTO {
     private Date date;
     private boolean valid;
     private String subscriptionType;
-    private String sporteeMember;
+    private String user;
 
     public SubscriptionDTO(Subscription subscription) {
         this.date = subscription.getDate();
         this.valid = subscription.isValid();
         this.subscriptionType = subscription.getSubscriptionType().getName();
-        this.sporteeMember = subscription.getSporteeMember().getFirstName() + " " +
-                subscription.getSporteeMember().getLastName();
+        this.user = subscription.getUser().getFirstName() + " " +
+                subscription.getUser().getLastName();
     }
 }

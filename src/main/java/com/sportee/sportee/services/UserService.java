@@ -1,12 +1,16 @@
 package com.sportee.sportee.services;
 
+import com.sportee.sportee.data.DAO.Role;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.UserDTO;
-import com.sportee.sportee.data.repositories.MemberRepository;
+import com.sportee.sportee.data.repositories.RoleRepository;
 import com.sportee.sportee.data.repositories.UserRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,13 +19,20 @@ import java.util.Optional;
 //import org.springframework.mail.javamail.JavaMailSender;
 
 @Service("iUserService")
-@AllArgsConstructor
+
 public class UserService implements IUserService {
 
     private UserRepository userRepository;
-    private MemberRepository memberRepository;
+
+    private RoleRepository roleRepository;
 //    private JavaMailSender javaMailSender;
 
+    @Autowired
+    public UserService(UserRepository userRepository,  RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public List<UserDTO> getAllUsers() {
@@ -45,20 +56,28 @@ public class UserService implements IUserService {
 //    }
 
     @Override
-    public void modifyUser(Integer id, Optional<String> name, Optional<String> password) {
+    public void modifyUser(Integer id, Optional<String> userName, Optional<String> password, Optional<String> firstName, Optional<String> lastName,
+                           Optional<Date> birthDate, Optional<Integer> height) {
         Optional<User> user = userRepository.findById(id);
         user.ifPresent(u -> {
-            name.ifPresent(n -> u.setUserName(n));
+            userName.ifPresent(n -> u.setUserName(n));
             password.ifPresent(e -> u.setPassword(e));
+            firstName.ifPresent(f -> u.setFirstName(f));
+            lastName.ifPresent(l -> u.setLastName(l));
+            birthDate.ifPresent(b -> u.setBirthDate(b));
+            height.ifPresent(h -> u.setHeight(h));
             userRepository.save(u);
         });
     }
 
     @Override
-    public void insertUser(String name, String password) {
-
-        User user = User.builder().userName(name).password(password).build();
-        userRepository.save(user);
+    public void insertUser(String userName, String password, String firstName, String lastName, Date birthDate, int height, int roleId) {
+        Optional<Role> role = roleRepository.findById(roleId);
+        role.ifPresent(r -> {
+            User user = User.builder().userName(userName).password(password).firstName(firstName).lastName(lastName)
+                    .birthDate(birthDate).height(height).role(role.get()).build();
+            userRepository.save(user);
+        });
 
 
     }
@@ -113,7 +132,7 @@ public class UserService implements IUserService {
 //        return address;
 //    }
 
-    public String getUserName (Integer userId) throws NotFoundException{
+    public String getUserName(Integer userId) throws NotFoundException {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
             User u = user.get();

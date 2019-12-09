@@ -2,6 +2,9 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DTO.UserDTO;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,9 +13,14 @@ public interface IUserService {
 
 //    void sendMail(Integer userId, String subject, String content);
 
-    void modifyUser(Integer id, Optional<String> name, Optional<String> email);
+    void modifyUser(Integer id, Optional<String> name, Optional<String> password, Optional<String> firstName, Optional<String> lastName,
+                    Optional<Date> birthDate, Optional<Integer> height);
 
-    void insertUser(String name, String password);
+//    void insertUser(String name, String password);
+
+
+
+    void insertUser(String name, String password, String firstName, String lastName, Date birthDate, int height, int roleId);
 
     void delete(Integer id);
 

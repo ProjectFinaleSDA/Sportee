@@ -1,8 +1,6 @@
 package com.sportee.sportee.data.DTO;
 
 import com.sportee.sportee.data.DAO.Measurement;
-import com.sportee.sportee.data.DAO.MeasurementType;
-import com.sportee.sportee.data.DAO.SporteeMember;
 import lombok.Getter;
 
 import java.sql.Date;
@@ -16,7 +14,7 @@ public class MeasurementDTO {
 
     private String measurementType;
     private String unit;
-    private String sporteeMember;
+    private String user;
 
     public MeasurementDTO(Measurement measurement) {
         this.id = measurement.getId();
@@ -24,6 +22,6 @@ public class MeasurementDTO {
         this.value = measurement.getValue();
         this.unit = measurement.getMeasurementType().getUnit();
         this.measurementType = measurement.getMeasurementType().getName();
-        this.sporteeMember = measurement.getSporteeMember().getFirstName()+" "+measurement.getSporteeMember().getLastName();
+        this.user = measurement.getUser().getFirstName()+" "+measurement.getUser().getLastName();
     }
 }

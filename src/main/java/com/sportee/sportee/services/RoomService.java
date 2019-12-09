@@ -1,9 +1,6 @@
 package com.sportee.sportee.services;
 
-import com.sportee.sportee.data.DAO.GymClassType;
 import com.sportee.sportee.data.DAO.Room;
-import com.sportee.sportee.data.DAO.SporteeMember;
-import com.sportee.sportee.data.DTO.MemberDTO;
 import com.sportee.sportee.data.DTO.RoomDTO;
 import com.sportee.sportee.data.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
